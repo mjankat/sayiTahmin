@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayı Tahmin</title>
+
+</head>
+<body>
+    <br><br>
+    <label><span id="tahminSayisi">1</span>. tahmini girin: </label>
+    <input type="number" id="tahminInput"><br>
+    <button onclick="tahminYap()">Tahmin yap</button>
+    <hr>
+    <label id="sonucLabel"></label>
+
+    <script>
+        let rastgeleSayi = Math.floor(Math.random() * 100) + 1; // 1 ile 100 arasında rastgele sayı üretme
+        let tahminSayisi = 1;
+
+        function tahminYap() {
+            let tahminInput = parseInt(document.getElementById('tahminInput').value);
+            let sonucLabel = document.getElementById('sonucLabel');
+
+            if (tahminInput === rastgeleSayi) {
+            sonucLabel.textContent = `Sayı ${tahminSayisi} denemede bulundu.`;
+            } else if (tahminInput < rastgeleSayi) {
+             sonucLabel.textContent = "Daha büyük bir sayı girin.";
+            } else {
+             sonucLabel.textContent = "Daha küçük bir sayı girin.";
+        }
+
+        tahminSayisi++;
+        document.getElementById('tahminSayisi').textContent = tahminSayisi;
+
+        if (tahminSayisi > 7) {
+            sonucLabel.textContent = "Deneme hakkınız kalmadı. Kaybettiniz.";
+            document.getElementById('tahminInput').disabled = true;
+         }
+}
+
+    </script>
+</body>
+</html>
